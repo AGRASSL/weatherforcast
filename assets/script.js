@@ -38,4 +38,26 @@ function currentWeather(city) {
     });
 
 }
+
+function forecast(cityname){
+    var forecastURL="https://api.openweathermap.org/data/2.5/forecast?id="+cityname+"&appid="+APIKey;
+    $.ajax({
+        url:forecastURL,
+        method:"GET"
+    }).then(function(res){
+        
+        for (i=0;i<5;i++){
+            var day= new Date((res.list[((i+1)*8)-1].dt)*1000).toLocaleDateString();
+            var kel= res.list[((i+1)*8)-1].main.temp;
+            var far=(((kel-273.5)*1.80)+32).toFixed(2);
+            var humid= res.list[((i+1)*8)-1].main.humidity;
+        
+            $("#futureDay"+i).html(day);
+            $("#futureTemp"+i).html(far);
+            $("#futureHumid"+i).html(humid+"%");
+        }
+        
+    });
+
+}
 $("#search-button").on("click",weatherResult);
