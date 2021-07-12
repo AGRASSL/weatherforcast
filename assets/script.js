@@ -1,10 +1,11 @@
 var city="";
 var searchCity = $("#search-city");
+var searchButton = $("#search-button");
 var currCity = $("#current-city");
 var currTemp = $("#temperature");
 var currHumid= $("#humid");
 var currWindSpeed=$("#wind-speed");
-var searchButton = $("#search-button");
+var cityRes=[];
 
 
 var APIKey="a0aca8a89948154a4182dcecc780b513";
@@ -33,7 +34,6 @@ function currentWeather(city) {
         var wmph=(windspeed*2.237).toFixed(1);
         $(currWindSpeed).html(wmph+"mph");
 
-    
 
     });
 
@@ -60,4 +60,7 @@ function forecast(cityname){
     });
 
 }
+
+
+
 $("#search-button").on("click",weatherResult);
